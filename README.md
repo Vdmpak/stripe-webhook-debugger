@@ -44,4 +44,4 @@ Run the MPP validator while the server is listening. It reads the payment networ
 
 Vercel can detect `src/server.js` as an Express entry point and serves the polished site from `public/`.
 
-Configure `MPP_SECRET_KEY`, `MPP_RECIPIENT`, `UPSTASH_REST_URL`, and `UPSTASH_REST_TOKEN` as server-side Vercel environment variables. Keep the signing secret and Upstash credentials out of source control; local `.env`, `.env.local`, `.vercel/`, and Stripe Projects state are ignored by Git.
+Configure `MPP_SECRET_KEY`, `MPP_RECIPIENT`, `MPP_REALM` (the stable production hostname), `UPSTASH_REST_URL`, and `UPSTASH_REST_TOKEN` as server-side Vercel environment variables. Keep the signing secret and Upstash credentials out of source control; local `.env`, `.env.local`, `.vercel/`, and Stripe Projects state are ignored by Git.

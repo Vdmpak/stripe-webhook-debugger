@@ -44,7 +44,8 @@ const mppx = Mppx.create({
     testnet: true,
     store: replayStore
   })],
-  secretKey
+  secretKey,
+  realm: process.env.MPP_REALM
 })
 const paidDebug = mppx.charge({ amount: '0.01', description: 'Stripe webhook diagnostic report' })
 
