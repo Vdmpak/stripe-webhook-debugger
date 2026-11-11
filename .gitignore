@@ -1,6 +1,14 @@
 .projects/
+.vercel/
 node_modules/
 npm-debug.log*
+
+.agents/
+.claude/
+.cursor/
+.cursorignore
+AGENTS.md
+CLAUDE.md
 
 .projects/cache
 .projects/vault
@@ -9,9 +17,4 @@ npm-debug.log*
 .env
 .env.*
 !.env.example
-.agents/
-.claude/
-.cursor/
-.cursorignore
-AGENTS.md
-CLAUDE.md
+.env*
