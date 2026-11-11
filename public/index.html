@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090b10">
+    <meta name="description" content="Understand Stripe webhook payloads with actionable diagnostics for developers and AI agents.">
+    <title>Stripe Webhook Debugger — Ship with confidence</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="page-glow page-glow-top" aria-hidden="true"></div>
+    <div class="page-glow page-glow-bottom" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Stripe Webhook Debugger home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M7 8.5 16 4l9 4.5v15L16 28l-9-4.5v-15Z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="m11 17 3.2 3.2L21 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy">hook<span>check</span></span>
+        <span class="brand-beta">BETA</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#product">Product</a>
+        <a href="#demo">Live demo</a>
+        <a href="#api">API</a>
+      </nav>
+
+      <a class="header-cta" href="#demo">
+        Try the demo
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 8h9.4m-3.8-3.8L12.7 8l-3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero shell" id="product">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse-dot"></span> A clearer view of every event</div>
+          <h1>Webhooks,<br>without the <span class="gradient-text">guesswork.</span></h1>
+          <p class="hero-lede">Find the missing field, the wrong environment, or the retry trap—before it becomes a production mystery.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#demo">
+              Inspect a sample
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 8h9.4m-3.8-3.8L12.7 8l-3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="button button-quiet" href="/openapi.json">Explore the API <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-footnote">
+            <span class="mini-check" aria-hidden="true">✓</span>
+            <span>Private by design</span>
+            <span class="footnote-divider"></span>
+            <span>Built for developers and agents</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-orbit orbit-one"></div>
+          <div class="visual-orbit orbit-two"></div>
+          <div class="analysis-window">
+            <div class="window-topbar">
+              <div class="window-controls"><i></i><i></i><i></i></div>
+              <span class="window-title">event_inspector</span>
+              <span class="window-state"><span></span> PREVIEW</span>
+            </div>
+            <div class="event-heading">
+              <div>
+                <div class="micro-label">STRIPE EVENT</div>
+                <div class="event-name">payment_intent.succeeded</div>
+              </div>
+              <span class="event-mode">TEST MODE</span>
+            </div>
+            <div class="event-id-row">
+              <span class="event-id-icon">↗</span>
+              <span>evt_1PqJ8x2eZvKYlo2C...</span>
+              <span class="event-time">just now</span>
+            </div>
+            <div class="window-rule"></div>
+            <div class="checks-heading">
+              <span>DIAGNOSTIC CHECKS</span>
+              <span>04 / 05</span>
+            </div>
+            <div class="check-list">
+              <div class="check-row">
+                <span class="check-icon check-pass">✓</span>
+                <span class="check-name">Event envelope</span>
+                <span class="check-result">VALID</span>
+              </div>
+              <div class="check-row">
+                <span class="check-icon check-pass">✓</span>
+                <span class="check-name">Event identifier</span>
+                <span class="check-result">PRESENT</span>
+              </div>
+              <div class="check-row">
+                <span class="check-icon check-pass">✓</span>
+                <span class="check-name">Environment mode</span>
+                <span class="check-result">MATCHED</span>
+              </div>
+              <div class="check-row">
+                <span class="check-icon check-pass">✓</span>
+                <span class="check-name">Retry safety</span>
+                <span class="check-result">RECOMMENDED</span>
+              </div>
+              <div class="check-row check-row-warning">
+                <span class="check-icon check-warn">!</span>
+                <span class="check-name">Signature verification</span>
+                <span class="check-result check-result-warn">CHECK YOUR HANDLER</span>
+              </div>
+            </div>
+            <div class="window-insight">
+              <span class="insight-spark">✳</span>
+              <p><strong>One thing to check</strong><br>Verify signatures with the original raw body and your endpoint secret.</p>
+              <span class="insight-arrow">↗</span>
+            </div>
+            <div class="window-caption"><span class="caption-dot"></span> Illustrative preview · no payload sent</div>
+          </div>
+          <div class="floating-note note-top"><span class="note-check">✓</span> Clarity, not more logs</div>
+          <div class="floating-note note-bottom"><span class="note-spark">✳</span> Actionable by design</div>
+        </div>
+      </section>
+
+      <section class="signal-strip shell" aria-label="Product highlights">
+        <span>LESS GUESSWORK</span><i></i>
+        <span>SAFER RETRIES</span><i></i>
+        <span>CLEARER EVENT FLOWS</span><i></i>
+        <span>AGENT-READY API</span>
+      </section>
+
+      <section class="features shell">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> WHAT IT CATCHES</div>
+            <h2>Small checks.<br><span class="muted-heading">Fewer surprises.</span></h2>
+          </div>
+          <p>Get a readable report on the details that are easy to miss when you’re wiring up a webhook at speed.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-index">01</span>
+            <div class="feature-icon icon-purple">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 6.5h14M5 12h9M5 17.5h6M17 15l2 2 3.5-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Event sanity</h3>
+            <p>Inspect IDs, event types, timestamps, modes, and the shape of snapshot or thin event payloads.</p>
+            <span class="feature-tag">STRUCTURE CHECKS</span>
+          </article>
+          <article class="feature-card">
+            <span class="feature-index">02</span>
+            <div class="feature-icon icon-green">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5 20 7v5.3c0 4.2-3.4 7.3-8 8.7-4.6-1.4-8-4.5-8-8.7V7l8-3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m8.7 12.2 2.2 2.2 4.6-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Security signals</h3>
+            <p>Check signature header shape and timestamp freshness, with honest guidance on what still needs verification.</p>
+            <span class="feature-tag">NO SECRET UPLOADS</span>
+          </article>
+          <article class="feature-card">
+            <span class="feature-index">03</span>
+            <div class="feature-icon icon-blue">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 7.5h15m-15 4.5h10m-10 4.5h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="m16 15 2.2 2.2 3.3-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Useful next steps</h3>
+            <p>Translate common integration footguns into a short, practical list your team—or coding agent—can act on.</p>
+            <span class="feature-tag">BUILT FOR ACTION</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="demo-section" id="demo">
+        <div class="shell demo-shell">
+          <div class="demo-intro">
+            <div class="eyebrow"><span class="eyebrow-line"></span> TAKE A LOOK AROUND</div>
+            <h2>A real payload.<br><span class="muted-heading">A calmer debugging session.</span></h2>
+            <p>Try the local preview with sample data. It runs in your browser—nothing is uploaded and no payment is made.</p>
+            <div class="privacy-note"><span class="privacy-lock">⌑</span><span><strong>Keep secrets out of the payload.</strong><br>Use your endpoint secret in your own Stripe SDK verifier, never in this tool.</span></div>
+          </div>
+
+          <div class="demo-workspace">
+            <div class="workspace-bar">
+              <div class="workspace-tab"><span class="tab-dot"></span> Sample event <span class="tab-x">×</span></div>
+              <span class="workspace-local"><span></span> LOCAL PREVIEW</span>
+            </div>
+            <label class="payload-label" for="payload">EVENT PAYLOAD <span>JSON</span></label>
+            <textarea id="payload" spellcheck="false" aria-label="Sample Stripe event JSON"></textarea>
+            <div class="workspace-footer">
+              <span id="payload-status">Sample payload loaded</span>
+              <button class="button button-primary button-small" id="analyze-button" type="button">
+                Run local preview
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.3 8h9.4m-3.8-3.8L12.7 8l-3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="demo-report" id="demo-report" aria-live="polite">
+              <div class="report-placeholder"><span>✳</span> Your local preview will appear here.</div>
+            </div>
+            <div class="workspace-disclaimer">Illustrative client-side checks only. The paid API returns a detailed report after an MPP payment.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="api-section shell" id="api">
+        <div class="api-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> MADE FOR YOUR TOOLCHAIN</div>
+          <h2>Debug it from<br><span class="muted-heading">where you work.</span></h2>
+          <p>A simple JSON API that agents can discover, pay for, and call in one HTTP flow. Every successful response includes an MPP payment receipt.</p>
+          <div class="api-facts">
+            <div><span class="fact-label">PRICE</span><strong>$0.01 <small>/ report</small></strong></div>
+            <div><span class="fact-label">NETWORK</span><strong>Tempo <small>testnet</small></strong></div>
+            <div><span class="fact-label">ENDPOINT</span><strong>POST <small>/api/debug</small></strong></div>
+          </div>
+        </div>
+        <div class="code-card">
+          <div class="code-card-head"><span class="terminal-dots"><i></i><i></i><i></i></span><span>request.json</span><button id="copy-button" type="button" aria-label="Copy request body">COPY</button></div>
+          <pre><code id="request-code"></code></pre>
+          <div class="code-card-foot"><span class="code-green">●</span> Send through an MPP-compatible client to pay and receive your report.</div>
+        </div>
+      </section>
+
+      <section class="bottom-cta shell">
+        <div class="cta-orb" aria-hidden="true"></div>
+        <div class="eyebrow"><span class="pulse-dot"></span> YOUR NEXT EVENT CAN BE CLEARER</div>
+        <h2>Less time tracing.<br><span class="gradient-text">More time shipping.</span></h2>
+        <a class="button button-primary" href="#demo">Try the sample <span aria-hidden="true">↗</span></a>
+        <p>Testnet payments only · No account required · Keep webhook secrets private</p>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <a class="brand footer-brand" href="/">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M7 8.5 16 4l9 4.5v15L16 28l-9-4.5v-15Z" stroke="currentColor" stroke-width="1.5"/><path d="m11 17 3.2 3.2L21 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-copy">hook<span>check</span></span>
+      </a>
+      <span class="footer-note">Made for the moments between “event sent” and “why didn’t it work?”</span>
+      <div class="footer-links"><a href="/openapi.json">OpenAPI</a><a href="/llms.txt">llms.txt</a><a href="https://github.com/Vdmpak/stripe-webhook-debugger" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+    </footer>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

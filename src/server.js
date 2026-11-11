@@ -1,12 +1,18 @@
 import 'dotenv/config'
 import express from 'express'
+import { Redis } from '@upstash/redis'
+import { Json } from 'ox'
+import { fileURLToPath } from 'node:url'
 import { Mppx, discovery } from 'mppx/express'
-import { tempo } from 'mppx/server'
+import { Store, tempo } from 'mppx/server'
 import { analyzeWebhook, MAX_PAYLOAD_BYTES_LIMIT } from './analyze.js'
+import { createReplayStore } from './replay-store.js'
 
 const port = Number(process.env.PORT ?? 4101)
 const secretKey = process.env.MPP_SECRET_KEY
 const recipient = process.env.MPP_RECIPIENT
+const upstashUrl = process.env.UPSTASH_REST_URL
+const upstashToken = process.env.UPSTASH_REST_TOKEN
 const tempoTestnetPathUsd = '0x20c0000000000000000000000000000000000000'
 
 if (!secretKey) {
@@ -17,12 +23,26 @@ if (!recipient || !/^0x[a-fA-F0-9]{40}$/.test(recipient)) {
   throw new Error('MPP_RECIPIENT must be a Tempo testnet wallet address (0x followed by 40 hexadecimal characters).')
 }
 
+if (Boolean(upstashUrl) !== Boolean(upstashToken)) {
+  throw new Error('UPSTASH_REST_URL and UPSTASH_REST_TOKEN must both be configured.')
+}
+
+if (process.env.NODE_ENV === 'production' && !upstashUrl) {
+  throw new Error('Production requires shared atomic Upstash Redis storage for payment replay protection.')
+}
+
+const replayStore = upstashUrl
+  ? Store.upstash(createReplayStore(new Redis({ url: upstashUrl, token: upstashToken }), Json))
+  : Store.memory()
+
 const app = express()
+app.use(express.static(fileURLToPath(new URL('../public/', import.meta.url))))
 const mppx = Mppx.create({
   methods: [tempo.charge({
     currencies: [tempoTestnetPathUsd],
     recipient,
-    testnet: true
+    testnet: true,
+    store: replayStore
   })],
   secretKey
 })

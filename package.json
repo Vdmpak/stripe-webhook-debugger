@@ -13,8 +13,10 @@
     "validate:mpp": "mppx validate http://127.0.0.1:4101 --body '{\"/api/debug\":{\"rawPayload\":\"{}\"}}'"
   },
   "dependencies": {
+    "@upstash/redis": "^1.41.0",
     "dotenv": "^16.6.1",
     "express": "^5.1.0",
-    "mppx": "^0.18.0"
+    "mppx": "^0.18.0",
+    "ox": "^0.14.45"
   }
 }
