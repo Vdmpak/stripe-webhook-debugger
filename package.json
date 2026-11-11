@@ -1,0 +1,20 @@
+{
+  "name": "stripe-webhook-debugger",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "validate:mpp": "mppx validate http://127.0.0.1:4101 --body '{\"/api/debug\":{\"rawPayload\":\"{}\"}}'"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "mppx": "^0.18.0"
+  }
+}
